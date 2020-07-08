@@ -1,1 +1,22 @@
+Prediction of house prices for the kc district.
 
+1. Frame problem
+Problem: Compute Exact Price of the houses given X features
+Supervised Regression problem.
+RMSE used to compute accuracy of the model
+
+2. Get the data
+Train/Test Split created via StratifiedShuffleSampling
+
+3. Data Visualization
+Via matplotlib, various scatte rplot and Pearson's correlation matrix
+
+4. Data Cleaning
+No missing values
+Drop unecessary features such as id
+Create pipelines to handle categorical data, and scale numerical features.
+
+5. Create ML algorithm
+6. Check cross validation
+7. Grid Search
+8. Select Best model and check on the test set.
