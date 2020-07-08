@@ -14,6 +14,7 @@ Via matplotlib, various scatte rplot and Pearson's correlation matrix
 4. Data Cleaning
 No missing values
 Drop unecessary features such as id
+DataFramSelector class to select categorical and numerical features for the disctinct pipelines before FeatureUnion
 Create pipelines to handle categorical data, and scale numerical features.
 
 5. Create ML algorithm
