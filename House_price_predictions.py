@@ -136,10 +136,9 @@ full_pipeline = FeatureUnion(transformer_list = [
 housing_prepared = full_pipeline.fit_transform(housing)
 
 """Construct Regression Model"""
-
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
+from sklearn.linear_model import LinearRegression
 lin_reg = LinearRegression()
 lin_reg.fit(housing_prepared, housing_labels)
 housing_predictions = lin_reg.predict(housing_prepared)
@@ -151,7 +150,7 @@ forest_reg = RandomForestRegressor()
 forest_reg.fit(housing_prepared, housing_labels)
 forest_housing_predictions = forest_reg.predict(housing_prepared)
 forest_mse = mean_squared_error(housing_labels, forest_housing_predictions)
-forest_rmse = np.sqrt(forest_mse)    #rmse: 49 437 much better
+forest_rmse = np.sqrt(forest_mse)    #rmse: 48 596 much better
 
 from sklearn.model_selection import cross_val_score
 scores = cross_val_score(forest_reg, housing_prepared, housing_labels,
