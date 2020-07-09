@@ -154,15 +154,16 @@ forest_mse = mean_squared_error(housing_labels, forest_housing_predictions)
 forest_rmse = np.sqrt(forest_mse)    #rmse: 49 437 much better
 
 from sklearn.model_selection import cross_val_score
-scores = cross_val_score(estimator = forest_reg, X = housing_prepared, 
-                         y = housing_labels, cv = 10)
+scores = cross_val_score(forest_reg, housing_prepared, housing_labels,
+                         scoring = 'neg_mean_squared_erro', cv = 10)
+forest_rmse_score = np.sqrt(-scores)
 
 def display_scores(scores):
     print('Scores: ', scores)
     print('Mean: ', scores.mean())
     print('Standard Deviation', scores.std())
 
-display_scores(forest_rmse_scores)
+display_scores(forest_rmse_score)
 
 
 
