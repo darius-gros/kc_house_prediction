@@ -17,6 +17,8 @@ Drop unecessary features such as id
 DataFramSelector class to select categorical and numerical features for the disctinct pipelines before FeatureUnion
 Create pipelines to handle categorical data, and scale numerical features.
 
+(To elaborate)
+
 5. Create ML algorithm
 6. Check cross validation
 7. Grid Search
