@@ -143,7 +143,7 @@ lin_reg = LinearRegression()
 lin_reg.fit(housing_prepared, housing_labels)
 housing_predictions = lin_reg.predict(housing_prepared)
 lin_mse = mean_squared_error(housing_labels, housing_predictions)
-lin_rmse = np.sqrt(lin_mse)  #rmse : 191 055
+lin_rmse = np.sqrt(lin_mse)  #rmse : 191 055 not good
 
 from sklearn.ensemble import RandomForestRegressor
 forest_reg = RandomForestRegressor()
