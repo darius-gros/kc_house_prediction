@@ -154,7 +154,7 @@ forest_rmse = np.sqrt(forest_mse)    #rmse: 48 596 much better
 
 from sklearn.model_selection import cross_val_score
 scores = cross_val_score(forest_reg, housing_prepared, housing_labels,
-                         scoring = 'neg_mean_squared_erro', cv = 10)
+                         scoring = 'neg_mean_squared_error', cv = 10)
 forest_rmse_score = np.sqrt(-scores)
 
 def display_scores(scores):
