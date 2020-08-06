@@ -150,7 +150,7 @@ forest_reg = RandomForestRegressor()
 forest_reg.fit(housing_prepared, housing_labels)
 forest_housing_predictions = forest_reg.predict(housing_prepared)
 forest_mse = mean_squared_error(housing_labels, forest_housing_predictions)
-forest_rmse = np.sqrt(forest_mse)    #rmse: 48 596 much better
+forest_rmse = np.sqrt(forest_mse)    #rmse: 48 596 much better   #cpu takes forever to run though
 
 from sklearn.model_selection import cross_val_score
 scores = cross_val_score(forest_reg, housing_prepared, housing_labels,
@@ -162,7 +162,34 @@ def display_scores(scores):
     print('Mean: ', scores.mean())
     print('Standard Deviation', scores.std())
 
-display_scores(forest_rmse_score)
+display_scores(forest_rmse_score) 
+
+#improve forest hyperparameters with gridsearchcv
+from sklearn.model_selection import GridSearchCV
+param_grid = [
+        {'n_estimators':[3,10,30], 'max_features':[2,4,6,8]},
+        {'bootstrap':[False], 'n_estimators' : [3,10], 'max_features':[2,3,4]}
+        ]
+
+forest_reg = RandomForestRegressor()
+grid_search = GridSearchCV(forest_reg, param_grid, scoring = 'neg_mean_squared_error')
+grid_search.fit(housing_prepared, housing_labels)
+grid_search.best_params_
+
+#feature_importances = grid_search.best_estimator_.feature_importances_
+#attributes = num_attribs + cat_attribs
+#sorted(zip(feature_importances, attributes), reverse = True)
+
+final_model = grid_search.best_estimator_
+X_test = strat_test_set.drop(['price'], axis = 1)
+y_test = strat_test_set['price'].copy()    
+
+X_test_prepared = full_pipeline.transform(X_test)
+final_predictions = final_model.predict(X_test_prepared)
+final_mse = mean_squared_error(y_test, final_predictions)
+final_rmse = np.sqrt(final_mse)
+
+
 
 
 
